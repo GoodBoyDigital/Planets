@@ -1,6 +1,5 @@
 
 const assetsToLoad = [
-	{"id":"model","url":"assets/obj/model.obj","type":"text"},
 	{"id":"aomap","url":"assets/img/aomap.jpg","type":"jpg"},
 	{"id":"bg","url":"assets/img/bg.jpg","type":"jpg"},
 	{"id":"irr_negx","url":"assets/img/irr_negx.hdr","type":"binary"},
@@ -14,10 +13,13 @@ const assetsToLoad = [
 	{"id":"planet0","url":"assets/img/planet0.jpg","type":"jpg"},
 	{"id":"planet1","url":"assets/img/planet1.jpg","type":"jpg"},
 	{"id":"planet2","url":"assets/img/planet2.jpg","type":"jpg"},
+	{"id":"planet3","url":"assets/img/planet3.jpg","type":"jpg"},
+	{"id":"planet4","url":"assets/img/planet4.jpg","type":"jpg"},
 	{"id":"stars0","url":"assets/img/stars0.png","type":"png"},
 	{"id":"stars1","url":"assets/img/stars1.png","type":"png"},
 	{"id":"stars2","url":"assets/img/stars2.png","type":"png"},
-	{"id":"studio_radiance","url":"assets/img/studio_radiance.dds","type":"binary"}
+	{"id":"studio_radiance","url":"assets/img/studio_radiance.dds","type":"binary"},
+	{"id":"model","url":"assets/obj/model.obj","type":"text"}
 ];
 
 

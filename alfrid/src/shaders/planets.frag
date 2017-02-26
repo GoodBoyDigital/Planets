@@ -15,6 +15,7 @@ uniform float		uSpecular;
 uniform float		uExposure;
 uniform float		uGamma;
 uniform float		uColorCorrection;
+uniform vec2		uUVOffset;
 
 varying vec3        vNormal;
 varying vec3        vPosition;
@@ -99,7 +100,9 @@ vec3 getPbr(vec3 N, vec3 V, vec3 baseColor, float roughness, float metallic, flo
 void main(void) {
     vec3 N 				= normalize( vNormal );
 	vec3 V 				= normalize( vEyePosition );
-	vec3 baseColor 		= texture2D( texture, vTextureCoord).rgb;
+	vec2 uv 			= vTextureCoord + uUVOffset;
+	uv 					= mod(uv, 1.0);
+	vec3 baseColor 		= texture2D( texture, uv).rgb;
 	
 	vec3 color 			= getPbr(N, V, baseColor, uRoughness, uMetallic, uSpecular);
 

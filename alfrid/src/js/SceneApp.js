@@ -7,11 +7,14 @@ import VIVEUtils from './utils/VIVEUtils';
 import ViewSky from './ViewSky';
 import ViewStars from './ViewStars';
 import ViewPlanets from './ViewPlanets';
+import Planet from './Planet';
 
 const scissor = function(x, y, w, h) {
 	GL.scissor(x, y, w, h);
 	GL.viewport(x, y, w, h);
 }
+
+var random = function(min, max) { return min + Math.random() * (max - min);	}
 
 const RAD = Math.PI/180;
 
@@ -53,6 +56,16 @@ class SceneApp extends Scene {
 		this._vSky = new ViewSky();
 		this._vStars = new ViewStars();
 		this._vPlanets = new ViewPlanets();
+
+		this._planets = [];
+		let i=0;
+		while(Assets.get(`planet${i}`)) {
+			const p = new Planet(random(.1, 2), random(8, 20), random(-5, 5), `planet${i}`);
+			this._planets.push(p);
+			i++;
+		}
+
+		console.table(this._planets);
 	}
 
 
@@ -107,7 +120,7 @@ class SceneApp extends Scene {
 		// this._bSky.draw(Assets.get('bg'));
 		this._vSky.render();
 		this._vStars.render();
-		this._vPlanets.render(Assets.get('studio_radiance'), Assets.get('irr'));
+		this._vPlanets.render(this._planets, Assets.get('studio_radiance'), Assets.get('irr'));
 		
 		// this._vModel.render(Assets.get('studio_radiance'), Assets.get('irr'), Assets.get('aomap'));
 	}

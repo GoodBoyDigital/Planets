@@ -26,10 +26,10 @@ class ViewPlanets extends alfrid.View {
 	}
 
 
-	render(textureRad, textureIrr) {
+	render(mPlanets, textureRad, textureIrr) {
 		this.shader.bind();
 		this.shader.uniform("texture", "uniform1i", 0);
-		Assets.get('planet0').bind(0);
+		
 
 		this.shader.uniform('uRadianceMap', 'uniform1i', 1);
 		this.shader.uniform('uIrradianceMap', 'uniform1i', 2);
@@ -47,8 +47,18 @@ class ViewPlanets extends alfrid.View {
 
 		this.shader.uniform("uColorCorrection", "float", this.colorCorrection ? 1.0 : 0.0);
 
+		mPlanets.forEach((planet)=> {
+			const { position, size, uvOffset, texture } = planet;
+			this.shader.uniform("uPosition", "vec3", position);
+			this.shader.uniform("uSize", "float", size);
+			this.shader.uniform("uUVOffset", "vec2", uvOffset);
+			texture.bind(0);
 
-		GL.draw(this.mesh);
+			GL.draw(this.mesh);
+		});
+
+
+		
 	}
 
 
